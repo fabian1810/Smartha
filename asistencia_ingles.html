@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistencia - Inglés</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .header {
+            padding: 20px;
+            text-align: center;
+            background-color: #007bff; /* Color azul */
+            color: white;
+            border-bottom: 5px solid #0056b3; /* Ligeramente más oscuro */
+        }
+        .container {
+            margin: 30px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+        h2 {
+            color: #007bff; /* Color azul */
+        }
+        table {
+            border: 1px solid #007bff; /* Bordes de la tabla en azul */
+        }
+        th {
+            background-color: #e7f1ff; /* Fondo claro para encabezados */
+        }
+        th, td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Asistencia de Inglés</h1>
+    </div>
+
+    <div class="container">
+        <h2>Lista de Asistencia</h2>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Nombre del Estudiante</th>
+                    <th>Hora de Registro</th>
+                </tr>
+            </thead>
+            <tbody id="attendance-table">
+                <!-- Las filas de asistencia se agregarán aquí -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            const attendanceList = JSON.parse(localStorage.getItem('attendanceList')) || [];
+            const attendanceTable = $('#attendance-table');
+
+            attendanceList.forEach(entry => {
+                if (entry.subject === "Inglés") {
+                    const row = `<tr>
+                                    <td>${entry.name}</td>
+                                    <td>${entry.time}</td>
+                                </tr>`;
+                    attendanceTable.append(row);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
